@@ -1,1 +1,10 @@
 @import "tailwindcss";
+@import "@fontsource-variable/outfit";
+
+@theme {
+  --font-sans: "Outfit Variable", sans-serif;
+  --color-ink: #0b0b0b;
+  --color-paper: #f7f7f7;
+  --color-brand: #2f7bff;
+  --color-highlight: #ffc928;
+}
