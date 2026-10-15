@@ -1,4 +1,6 @@
 import { useState } from "react";
+import ResultCard from "./ResultCard";
+import { analyzeImage } from "../services/analyze";
 
 const MAX_SIZE_MB = 5;
 const ALLOWED_TYPES = ["image/jpeg", "image/png"];
@@ -7,6 +9,8 @@ function UploadCard() {
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState(null);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [result, setResult] = useState(null);
 
   const handleChange = (e) => {
     const selected = e.target.files[0];
@@ -33,6 +37,20 @@ function UploadCard() {
     setFile(null);
     setPreview(null);
     setError("");
+  };
+
+  const handleAnalyze = async () => {
+    setLoading(true);
+    setResult(null);
+    setError("");
+    try {
+      const data = await analyzeImage(file);
+      setResult(data);
+    } catch {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -76,11 +94,11 @@ function UploadCard() {
 
         <div className="mt-6 flex gap-3">
           <button
-            disabled={!file}
-            onClick={() => console.log(file)}
+            disabled={!file || loading}
+            onClick={handleAnalyze}
             className="flex-1 rounded-2xl bg-brand py-3 font-semibold text-white transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-40"
           >
-            Analyze image
+            {loading ? "Analyzing..." : "Analyze image"}
           </button>
           {file && (
             <button
@@ -91,6 +109,7 @@ function UploadCard() {
             </button>
           )}
         </div>
+        {result && <ResultCard result={result} />}
       </div>
     </section>
   );
