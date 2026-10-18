@@ -1,13 +1,13 @@
 const links = [
-  { label: "How it works", href: "#how-it-works" },
-  { label: "Check an image", href: "#check" },
-  { label: "About", href: "#about" },
+  { label: "How it works", href: "/#how-it-works" },
+  { label: "Check an image", href: "/#check" },
+  { label: "About", href: "/#about" },
 ];
 
 function Navbar() {
   return (
     <header className="fixed top-6 left-1/2 z-50 flex -translate-x-1/2 items-center gap-2 rounded-2xl border border-black/10 bg-white p-2 shadow-sm">
-      <a href="#" className="px-4 py-2 text-lg font-bold text-ink">
+      <a href="/" className="px-4 py-2 text-lg font-bold text-ink">
         RealView
       </a>
 

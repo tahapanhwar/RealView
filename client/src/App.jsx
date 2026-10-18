@@ -1,18 +1,16 @@
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import UploadCard from "./components/UploadCard";
-import HowItWorks from "./components/HowItWorks";
-import Footer from "./components/Footer";
+import { Routes, Route } from "react-router";
+import Layout from "./components/Layout";
+import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
-    <div className=" bg-paper">
-      <Navbar />
-      <Hero />
-      <UploadCard />
-      <HowItWorks />
-      <Footer />
-    </div>
+    <Routes>
+      <Route element={<Layout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
   );
 }
 

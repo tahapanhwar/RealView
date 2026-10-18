@@ -11,7 +11,7 @@ function Footer() {
         </h2>
 
         <a
-          href="#check"
+          href="/#check"
           className="mt-10 inline-block rounded-2xl bg-brand px-8 py-4 text-lg font-semibold text-white transition hover:brightness-110"
         >
           Try RealView
